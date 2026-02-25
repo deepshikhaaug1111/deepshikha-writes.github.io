@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Deepshikha — Writer & Researcher</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1a1a;
+      --soft: #f5f0eb;
+      --accent: #b5451b;
+      --muted: #6b6259;
+      --line: #ddd5ca;
+    }
+
+    body {
+      background: var(--soft);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.8rem 5vw;
+      border-bottom: 1px solid var(--line);
+      background: var(--soft);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav .logo {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    nav .nav-links a {
+      margin-left: 2rem;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 90vh;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-text {
+      padding: 8vw 6vw 8vw 5vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .hero-text .eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+    .hero-text h1 {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 1.6rem;
+      color: var(--ink);
+    }
+    .hero-text h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-text .bio {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+    .hero-text .cta-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.7rem 1.6rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover { background: #8f3614; }
+    .btn-outline {
+      border: 1px solid var(--ink);
+      color: var(--ink);
+    }
+    .btn-outline:hover { background: var(--ink); color: var(--soft); }
+
+    .hero-visual {
+      background: #e8e0d5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-visual .quote-block {
+      padding: 4vw;
+      text-align: center;
+    }
+    .hero-visual blockquote {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(1.3rem, 2.5vw, 2rem);
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.5;
+      max-width: 420px;
+    }
+    .hero-visual blockquote span {
+      display: block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 1.5rem;
+      font-style: normal;
+    }
+
+    /* SECTION SHARED */
+    section { padding: 6rem 5vw; }
+    section + section { border-top: 1px solid var(--line); }
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 400;
+      margin-bottom: 3rem;
+      max-width: 600px;
+      line-height: 1.2;
+    }
+
+    /* WRITING SAMPLES */
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .work-card {
+      background: #fff;
+      padding: 2.5rem;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .work-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.07);
+    }
+    .work-card .tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+      margin-bottom: 1.2rem;
+    }
+    .work-card h3 {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      line-height: 1.3;
+      margin-bottom: 0.8rem;
+    }
+    .work-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .work-card .read-link {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 2px;
+    }
+
+    /* ACADEMIC WORK */
+    .academic-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      max-width: 900px;
+    }
+    .academic-item {
+      padding: 1.5rem;
+      border-left: 3px solid var(--accent);
+      background: #fff;
+    }
+    .academic-item .conf {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .academic-item h4 {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 400;
+      line-height: 1.4;
+      color: var(--ink);
+    }
+    .academic-item .status {
+      margin-top: 0.5rem;
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5vw;
+      align-items: start;
+    }
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+      font-size: 0.95rem;
+      line-height: 1.9;
+    }
+    .skills-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+    .skills-list li {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      color: var(--muted);
+    }
+    .experience-list { list-style: none; }
+    .experience-list li {
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .experience-list li .role {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .experience-list li .org {
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin: 0.2rem 0;
+    }
+    .experience-list li .period {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* CONTACT */
+    .contact-section {
+      background: var(--ink);
+      color: var(--soft);
+      text-align: center;
+      padding: 7rem 5vw;
+    }
+    .contact-section .section-label { color: #c4876a; }
+    .contact-section .section-title {
+      color: var(--soft);
+      margin: 0 auto 1.5rem;
+    }
+    .contact-section p {
+      color: #a09890;
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      font-size: 0.95rem;
+    }
+    .contact-section a.btn-primary {
+      background: var(--accent);
+      font-size: 0.85rem;
+    }
+    .contact-links {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .contact-links a {
+      color: #a09890;
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .contact-links a:hover { color: var(--soft); }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-visual { min-height: 40vh; }
+      .about-grid { grid-template-columns: 1fr; }
+      .academic-list { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Deepshikha</a>
+  <div class="nav-links">
+    <a href="#writing">Writing</a>
+    <a href="#research">Research</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-text">
+    <p class="eyebrow">Writer · Researcher · Critic</p>
+    <h1>Words for things that <em>refuse</em> to be named</h1>
+    <p class="bio">
+      M.A. English Literature, University of Delhi. I write at the intersection of gender, culture, politics and the moving image. Seven conference presentations. One paper under review with Springer. Always looking for the underreported angle.
+    </p>
+    <div class="cta-row">
+      <a href="#writing" class="btn btn-primary">Read My Work</a>
+      <a href="#contact" class="btn btn-outline">Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="quote-block">
+      <blockquote>
+        "There's no other way to explain things than to call them good or bad. In this case, you become the worst person — not for anyone, or probably for everyone, but for yourself."
+        <span>— from The Anti-Writer</span>
+      </blockquote>
+    </div>
+  </div>
+</div>
+
+<!-- WRITING SAMPLES -->
+<section id="writing">
+  <p class="section-label">Selected Writing</p>
+  <h2 class="section-title">Essays that sit with the unnameable</h2>
+  <div class="works-grid">
+
+    <a href="https://open.substack.com/pub/theantiwriter/p/performative-love-and-pati-permashwar-00c" target="_blank" class="work-card">
+      <span class="tag">Cultural Criticism · Feminist Politics</span>
+      <h3>Performative Love and Pati Permashwar</h3>
+      <p>On Karvachauth as a site of Hindutva patriarchy, caste performance and manufactured devotion — and what it means to spell out love for an audience that was never yours.</p>
+      <span class="read-link">Read on Substack →</span>
+    </a>
+
+    <a href="https://open.substack.com/pub/theantiwriter/p/are-you-also-the-worst-person-in?utm_source=share&utm_medium=android&r=2384dx" target="_blank" class="work-card">
+      <span class="tag">Film Essay · Philosophy</span>
+      <h3>Are You Also the Worst Person in the World?</h3>
+      <p>Using Julie from Trier's film as a lens — on the illegibility of female selfhood, the social construction of guilt, and the gendered demand to perform legibility for those who refused to understand.</p>
+      <span class="read-link">Read on Substack →</span>
+    </a>
+
+    <a href="https://open.substack.com/pub/theantiwriter/p/obituary-of-a-dead-author?utm_source=share&utm_medium=android&r=2384dx" target="_blank" class="work-card">
+      <span class="tag">Creative · Experimental</span>
+      <h3>Obituary of a Dead Author</h3>
+      <p>A surreal, experimental short piece on authorship, erasure and the strange grief of identity. A different register — proof that not everything needs to be an argument.</p>
+      <span class="read-link">Read on Substack →</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- ACADEMIC RESEARCH -->
+<section id="research">
+  <p class="section-label">Academic Research</p>
+  <h2 class="section-title">Conference papers & publications</h2>
+  <div class="academic-list">
+
+    <div class="academic-item">
+      <p class="conf">Amity University, Patna · International Conference</p>
+      <h4>A Room of One's Own: Rights of the Invisible Transmen Community of India</h4>
+      <p class="status">Under review — Journal of Culture and Sexuality, Springer</p>
+    </div>
+
+    <div class="academic-item">
+      <p class="conf">Shiv Nadar University · Best Presenter Award</p>
+      <h4>From Metaphor to Materiality: Fragmented Female Identity in Sylvia Plath and The Substance</h4>
+      <p class="status">Presented 2025</p>
+    </div>
+
+    <div class="academic-item">
+      <p class="conf">Ramakrishna Mission College, Narendrapur</p>
+      <h4>When New York City Fell for Frank O'Hara: Queer Voice and American Modernism</h4>
+      <p class="status">Forthcoming publication</p>
+    </div>
+
+    <div class="academic-item">
+      <p class="conf">EFL University, Hyderabad · International Conference</p>
+      <h4>The Digital Dialectics of Loss: Graphic Narratives as Testimonial Literature</h4>
+      <p class="status">Forthcoming publication</p>
+    </div>
+
+    <div class="academic-item">
+      <p class="conf">Gargi College · Best Presenter Award</p>
+      <h4>A Window Within the Panopticon: Digital Activism and Resistance Through Political Memes</h4>
+      <p class="status">Presented 2024</p>
+    </div>
+
+    <div class="academic-item">
+      <p class="conf">Taylor & Francis · Under Review</p>
+      <h4>Motorcycles, Gender, Mobility and Sexual Capital in Bollywood and Indian Advertising</h4>
+      <p class="status">Under peer review</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">About</p>
+  <h2 class="section-title">The person behind the work</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I am currently in the second year of my M.A. in English Literature at the University of Delhi, where I specialise in gender studies, media criticism, and the politics of representation. Before that, I studied at Gargi College, where I debated, organised, and learned to argue in public.</p>
+      <p>I have been writing since before I knew it was something you could do for a living. I started The Anti-Writer because I needed a place for things that did not fit neatly into academic prose — essays that are rigorous but do not perform their rigor.</p>
+      <p>I am available for writing, research assistance, fact-checking, script development, and editorial support. I work fast, take feedback well, and I am always happy to do a trial piece.</p>
+      <ul class="skills-list">
+        <li>Research</li>
+        <li>Long-form essays</li>
+        <li>Cultural criticism</li>
+        <li>Script writing</li>
+        <li>Editing</li>
+        <li>Fact-checking</li>
+        <li>Gender studies</li>
+        <li>Film criticism</li>
+        <li>SEO writing</li>
+        <li>Canva</li>
+        <li>German (beginner)</li>
+      </ul>
+    </div>
+    <div>
+      <ul class="experience-list">
+        <li>
+          <p class="role">Content Writer</p>
+          <p class="org">My Cinema Story</p>
+          <p class="period">Sep 2024 – Mar 2025 · Film analysis, reviews, critical writing</p>
+        </li>
+        <li>
+          <p class="role">Web Content Writer</p>
+          <p class="org">Dagar Digital Media LLP</p>
+          <p class="period">Jun 2022 – Nov 2022 · SEO content, current affairs, finance</p>
+        </li>
+        <li>
+          <p class="role">Interviewer</p>
+          <p class="org">Eat My News</p>
+          <p class="period">Dec 2021 – Apr 2022 · Best Intern Award</p>
+        </li>
+        <li>
+          <p class="role">Vice President</p>
+          <p class="org">QED Debating Society, Gargi College</p>
+          <p class="period">Apr 2023 – Nov 2023</p>
+        </li>
+        <li>
+          <p class="role">Member, Project Aagah</p>
+          <p class="org">Enactus Gargi</p>
+          <p class="period">Jan 2022 – Jun 2024 · Workshops for underprivileged children</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <p class="section-label">Contact</p>
+  <h2 class="section-title">Let's work together</h2>
+  <p>Open to writing, research, editorial and script roles — full-time, part-time, or freelance. Happy to do a trial piece before any commitment.</p>
+  <a href="mailto:deepshikha.clg.info@gmail.com" class="btn btn-primary">deepshikha.clg.info@gmail.com</a>
+  <div class="contact-links">
+    <a href="https://substack.com/@theantiwriter" target="_blank">Substack</a>
+    <a href="www.linkedin.com/in/deepshikha-99109a221" target="_blank">LinkedIn</a>
+    <a href="tel:+917905413698">+91 7905413698</a>
+  </div>
+</section>
+
+<footer>
+  © 2026 Deepshikha · Built with intention, not a template
+</footer>
+
+</body>
+</html>
